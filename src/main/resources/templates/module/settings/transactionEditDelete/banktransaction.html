@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<div xmlns:th="http://www.thymeleaf.org" layout:decorator="theme/admin-layout">
+
+    <div layout:fragment = "main_content">
+
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <h1>
+                    Finance and Banking (Accounting) 
+                    <small></small>
+                </h1>
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+
+                <!-- Default box -->
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Deposits</h3>
+
+                        <div class="box-tools pull-right">
+                            <div class="btn-group">
+                                <a type="button"   th:href="@{/payments/clean}"  class="btn  btn-primary btn-xs"> Clean Screen</a>
+                                <a type="button"  th:href="@{/finanebanking/index}" class="btn  btn-danger btn-xs"> <i class="fa fa-window-close"></i> Close</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="box-body">                     
+                        <div th:if="${ not #strings.isEmpty(success_messages)}">
+                            <div class="alert alert-success alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <h4>
+                                    <i class="icon fa fa-check"></i> Alert!</h4>
+
+                                <span  class="bg-green text-center"th:text="${success_messages}"></span>
+                            </div>
+                        </div>
+
+                        <form  th:action="@{/deposits/save}"   enctype="multipart/form-data" th:object="${deposits}"  method="post" class=""> 
+                            <div class="alert alert-danger alert-dismissible" th:if="${#fields.hasErrors('*')}">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <h4><i class="icon fa fa-ban"></i> Error </h4>
+                                <ul th:if="${#fields.hasErrors('*')}">
+                                    <li th:each="err : ${#fields.errors('*')}" th:text="${err}">Input is incorrect</li>
+                                </ul>
+                            </div>
+
+
+                            <div class="col-sm-12" style="margin-bottom: 10px;">
+
+                                <div class="col-sm-6 text-red text-center"> <h4> SUBMIT বাটনে ক্লিক করার আগে দয়া করে আবার দেখুন</h4></div>
+
+                                <button type="submit" class="btn btn-primary btn-sm pull-right">Submit</button>
+                            </div>
+
+                            <div class="col-sm-12">
+                                <input type="hidden" class="form-control input-sm" th:field="*{dipositId}" placeholder="">
+                                <input type="hidden" class="form-control input-sm" th:field="*{transactionsType}" placeholder="">
+                            </div> 
+
+                            <table class="table table-bordered">
+                                <tr>
+
+                                    <td>Deposit Date<span class="text-red"> * </span>:</td>
+
+                                    <td> 
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i>
+                                            </span>
+                                            <input type="text" class="form-control input-sm" id="dipyDaate" th:field="*{dipositDate}" placeholder="">
+                                        </div>
+                                        <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('dipositDate')}" th:errors="*{dipositDate}"> </span></td>
+                                    <td>Name<span class="text-red"> * </span>:</td>
+                                    <td> <input type="text" class="form-control input-sm" th:field="*{name}" placeholder="">
+                                        <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"> </span></td>  
+                                    <td scope="col"> Into Account<span class="text-red"> * </span>:</td>
+                                    <td scope="col">
+                                        <select class=" form-control" id="diPyBankAccounts" th:field="*{bankAccounts}">
+                                            <option value=" ">Select one</option>
+                                            <option th:each=" banklists :${banklist}"
+                                                    th:value=" ${banklists.id}"
+                                                    th:text="${banklists.bankAccountName}">
+                                                Select one</option>
+                                        </select>
+
+                                        <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('bankAccounts')}" th:errors="*{bankAccounts}"> </span></td>
+                                </tr>
+
+                                <tr>
+                                    <td>Reference<span class="text-red">  *</span>:</td>
+                                    <td> 
+                                        <input type="text" class="form-control input-sm" th:field="*{dipositReference}" placeholder="">
+                                        <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('dipositReference')}" th:errors="*{dipositReference}"> </span>
+                                    </td>
+
+                                    <td>Dimension<span class="text-red">  </span>:</td>
+                                    <td>
+                                        <select class="form-control input-sm" th:field="*{dimension}">
+
+                                            <option value=" ">Select one</option>
+                                            <option th:each=" dimensionLists :${dimensionList}"
+                                                    th:value=" ${dimensionLists.id}"
+                                                    th:text="${dimensionLists.name}">
+                                                Select one</option>
+                                        </select> 
+
+                                    </td>
+
+                                    <td> Comments<span class="text-red">  </span>:</td>
+                                    <td><textarea class="form-control " th:field="*{memo}" placeholder="N/A"> N/A</textarea>
+                                        <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('memo')}" th:errors="*{memo}"> </span></td>
+                                </tr>
+                            </table>                 
+
+                            <div class="col-sm-12">
+
+                                <input type="hidden"  name="amount"   th:value="${session.totalAmountSession}"    placeholder="">
+
+                            </div>
+
+                        </form>
+
+                        <div class=" col-sm-12"> 
+                            <h4 class="text-center">Deposit  Items</h4>
+
+
+                            <form  enctype='application/json' id="pyCartItem" name="salesCartItem" th:action="@{/salescart/add}" method="post">
+                                <table class="table">
+
+                                    <tr>
+                                        <td colspan="3">
+                                            <select class="form-control  input-sm gLCode" name="gLCode">
+
+                                                <option value=" "> Select one</option>
+                                                <option th:each =" glaccounts :${glaccounts}"
+                                                        th:value=" ${glaccounts.id}" 
+                                                        th:text="${glaccounts.accountCode+' - '+ glaccounts.accountName+'-'+glaccounts.getAccountGroup.getClasses.getClassName}"> Select one</option>    
+                                            </select>
+                                        </td>
+                                        <td colspan="8">
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Account Code</th>
+                                        <th scope="col" >Account Description</th>
+                                        <!--                                    <th scope="col">Dimension</th>-->
+                                        <th scope="col">Amount</th>
+                                        <th scope="col">Memo</th>
+
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <input type="hidden" id="rowId" name="id"  size="10" value="" class="form-control input-sm"    placeholder=""  readonly>
+
+                                            <input type="text" id="diPyAccId" name="accId" size="3"  value="" class="form-control input-sm"    placeholder=""  readonly>
+                                        </td>
+
+                                        <td>
+
+                                            <input type="text" id="diPyAccCode" name="accCode" size="3"  value="0" class="form-control input-sm"    placeholder="" readonly>
+                                        </td>
+
+                                        <td>
+
+                                            <input type="text" id="diPyAccDescription" name="accDescription"  size="8"  value="" class="form-control input-sm"    placeholder="" readonly>
+
+                                            <!--                                        <input type="hidden" id="diPyAccDimension" name="dimension"   value="" class="form-control input-sm"    placeholder="">
+                                                                                    <input type="hidden" id="diPyAccDebit" name="debit"   value="0.00" class="form-control input-sm"    placeholder="">
+                                                                                    <input type="hidden" id="diPyAccCredit" name="credit"   value="0.00" class="form-control input-sm"    placeholder="">-->
+                                        </td>
+
+                                        <td><input type="number" min="0" size="10" value="0.00" step=".01" id="diPyAmount" name="amount"   class="form-control input-sm" ></td>
+
+                                        <td><input type="text" id="diPyMemo" name="memo"   value="" class="form-control input-sm" ></td>
+
+                                        <td><a  id="diPyItemSaveButton" class="btn btn-xs btn-success">Save Item</a></td>
+                                    </tr>
+
+                                </table>
+                            </form>
+
+                            <div class="" th:if="${session.pdItemCartSession==null}" >
+
+                                <h4 class="text-center text-red">     Your Item is Currently Empty</h4>
+
+                            </div>
+
+                            <table  id="diPyItemTable" class="table table-bordered"  th:if="${not #lists.isEmpty(session.pdItemCartSession)}">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Account Code</th>
+                                        <th scope="col">Account Description</th>
+                                        <th scope="col">Amount</th>
+                                        <th scope="col">Memo</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="itemList,status:${session.pdItemCartSession}">
+                                        <td>
+                                            <span id ="rowId" th:text="${itemList.id}"></span>
+
+                                            <input type="hidden" id="accId" th:value="${itemList.accId}">
+                                        </td>
+                                        <td><span id ="accCode" th:text="${itemList.accCode}"></span></td>
+
+                                        <td><span id ="description" th:text="${itemList.description}"></span></td>
+
+                                        <td> <span id ="amount" th:text="${itemList.amount}"></span> </td>
+
+                                        <td><span id ="memo" th:text="${itemList.memo}"></span></td>
+
+                                        <td>
+                                            <button id="diPyitemEdit" class="btn btn-xs btn-warning">Update</button>
+                                            <button  id="diPyItemDelete" class="btn btn-xs btn-danger">Delete</button>
+                                        </td>
+                                    </tr>
+                            </table>
+
+                            <table class="table table-bordered" th:if="${not #lists.isEmpty(session.pdItemCartSession)}">
+
+
+
+                                <tr>
+                                    <th style="width:80%"  class="text-right"> 
+                                        Total
+                                    </th>
+                                    <td> 
+                                        <input type="text"  th:value="${session.totalAmountSession}" size="12" step="any" min="0" class=""  placeholder="0.00" readonly>                                  
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+
+
+                        </div>
+                    </div> 
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <div class="box-tools pull-right">
+                            <div class="btn-group">
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box-footer-->
+                </div>
+                <!-- /.box -->
+
+            </section>
+            <!-- /.content -->
+        </div> 
+    </div>
+
+</div>

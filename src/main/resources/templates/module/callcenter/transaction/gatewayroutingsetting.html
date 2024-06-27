@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<div xmlns:th="http://www.thymeleaf.org" layout:decorator="theme/admin-layout">
+
+
+    <div layout:fragment = "main_content">
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <h1>
+                    Call Center VOS 3000
+                    <small></small>
+                </h1>
+
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title"> Gateway Routing Setting</h3>
+                        <div class="box-tools pull-right">
+                            <div class="btn-group">
+
+                                <a type="button"  th:href="@{/gatewayroutingsetting/list}" class="btn  btn-danger btn-xs"> <i class="fa fa-window-close"></i> Close</a>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-body">
+                        <form th:action="@{/gatewayroutingsetting/save}"
+                              enctype="multipart/form-data" th:object="${gatewayroutingsetting}"
+                              method="post" class="">
+                            <div class="alert alert-danger alert-dismissible" th:if="${#fields.hasErrors('*')}">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <h4><i class="icon fa fa-ban"></i> Error </h4>
+                                <ul th:if="${#fields.hasErrors('*')}">
+                                    <li th:each="err : ${#fields.errors('*')}" th:text="${err}">Input is incorrect</li>
+                                </ul>
+                            </div>
+
+
+                            <div class="form-group row">
+                                <input type="hidden" class="form-control" th:field="*{gatewayroutingId}" />
+
+                                <label for="classId" class="col-md-2 col-sm-2">caller city e164 check :</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{callercitye164check}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('callercitye164check')}" th:errors="*{callercitye164check}"> </span>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                              
+
+                                <label for="classId" class="col-md-2 col-sm-2">call ee city e164 check:</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{calleecitye164check}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('calleecitye164check')}" th:errors="*{calleecitye164check}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                               
+
+                                <label for="classId" class="col-md-2 col-sm-2">deny calle rcallee</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{denycallercallee}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('denycallercallee')}" th:errors="*{denycallercallee}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                                                <label for="classId" class="col-md-2 col-sm-2">deny same city codes</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{denysamecitycodes}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('denysamecitycodes')}" th:errors="*{denysamecitycodes}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                                                <label for="classId" class="col-md-2 col-sm-2">check mobile area</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{checkmobilearea}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('checkmobilearea')}" th:errors="*{checkmobilearea}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                
+                                <label for="classId" class="col-md-2 col-sm-2">callin caller prefixes</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{callincallerprefixes}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('callincallerprefixes')}" th:errors="*{callincallerprefixes}"> </span>
+                                </div>
+                            </div>      <div class="form-group row">
+                                
+                                <label for="classId" class="col-md-2 col-sm-2">callin calle eprefixes</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{callincalleeprefixes}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('callincalleeprefixes')}" th:errors="*{callincalleeprefixes}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                
+                                <label for="classId" class="col-md-2 col-sm-2">callin forward prefixes</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{callinforwardprefixes}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('callinforwardprefixes')}" th:errors="*{callinforwardprefixes}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                                                <label for="classId" class="col-md-2 col-sm-2">rewrite rules in callee</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{rewriterulesincallee}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('rewriterulesincallee')}" th:errors="*{rewriterulesincallee}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                                                <label for="classId" class="col-md-2 col-sm-2">rewrite rules in mobile area</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{rewriterulesinmobilearea}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('rewriterulesinmobilearea')}" th:errors="*{rewriterulesinmobilearea}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                                            <label for="classId" class="col-md-2 col-sm-2">rewrite rules in caller</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{rewriterulesincaller}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('rewriterulesincaller')}" th:errors="*{rewriterulesincaller}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                
+                                <label for="classId" class="col-md-2 col-sm-2">rewrite rules in caller use e164 group</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{rewriterulesincallerusee164group}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('rewriterulesincallerusee164group')}" th:errors="*{rewriterulesincallerusee164group}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                                             <label for="classId" class="col-md-2 col-sm-2">rewrite rule spi dentity</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{rewriterulespidentity}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('rewriterulespidentity')}" th:errors="*{rewriterulespidentity}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                 <label for="classId" class="col-md-2 col-sm-2">scheduled call in prefixes</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{scheduledcallinprefixes}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('scheduledcallinprefixes')}" th:errors="*{scheduledcallinprefixes}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                          <label for="classId" class="col-md-2 col-sm-2">scheduled rewrite rules in</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{scheduledrewriterulesin}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('scheduledrewriterulesin')}" th:errors="*{scheduledrewriterulesin}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                       <label for="classId" class="col-md-2 col-sm-2">scheduled capacity</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{scheduledcapacity}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('scheduledcapacity')}" th:errors="*{scheduledcapacity}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                    <label for="classId" class="col-md-2 col-sm-2">scheduled priority</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{scheduledpriority}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('scheduledpriority')}" th:errors="*{scheduledpriority}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="classId" class="col-md-2 col-sm-2">timeout setup</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{timeoutsetup}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('timeoutsetup')}" th:errors="*{timeoutsetup}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                        <label for="classId" class="col-md-2 col-sm-2">timeout call proceeding</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{timeoutcallproceeding}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('timeoutcallproceeding')}" th:errors="*{timeoutcallproceeding}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="classId" class="col-md-2 col-sm-2">timeout call proceeding olc</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{timeoutcallproceedingolc}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('timeoutcallproceedingolc')}" th:errors="*{timeoutcallproceedingolc}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                   <label for="classId" class="col-md-2 col-sm-2">timeout alerting</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{timeoutalerting}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('timeoutalerting')}" th:errors="*{timeoutalerting}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                     <label for="classId" class="col-md-2 col-sm-2">timeout invite</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{timeoutinvite}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('timeoutinvite')}" th:errors="*{timeoutinvite}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                         <label for="classId" class="col-md-2 col-sm-2">timeout trying</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{timeouttrying}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('timeouttrying')}" th:errors="*{timeouttrying}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                                    <label for="classId" class="col-md-2 col-sm-2">timeout session progress sdp</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{timeoutsessionprogresssdp}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('timeoutsessionprogresssdp')}" th:errors="*{timeoutsessionprogresssdp}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                   <label for="classId" class="col-md-2 col-sm-2">timeout session progress</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{timeoutsessionprogress}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('timeoutsessionprogress')}" th:errors="*{timeoutsessionprogress}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="classId" class="col-md-2 col-sm-2">time out ringing</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{timeoutringing}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('timeoutringing')}" th:errors="*{timeoutringing}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="classId" class="col-md-2 col-sm-2">stop switch after olc</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{stopswitchafterolc}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('stopswitchafterolc')}" th:errors="*{stopswitchafterolc}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="classId" class="col-md-2 col-sm-2">stop switch after sdp</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{stopswitchaftersdp}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('stopswitchaftersdp')}" th:errors="*{stopswitchaftersdp}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="classId" class="col-md-2 col-sm-2">clearing account use call out e164</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{clearingaccountusecalloute164}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('clearingaccountusecalloute164')}" th:errors="*{clearingaccountusecalloute164}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="classId" class="col-md-2 col-sm-2">q931 present ati on indicator</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{q931presentationindicator}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('q931presentationindicator')}" th:errors="*{q931presentationindicator}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+
+                                <label for="classId" class="col-md-2 col-sm-2">q931 screening indicator</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{q931screeningindicator}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('q931screeningindicator')}" th:errors="*{q931screeningindicator}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="classId" class="col-md-2 col-sm-2">dtmf receive method</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{dtmfreceivemethod}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('dtmfreceivemethod')}" th:errors="*{dtmfreceivemethod}"> </span>
+                                </div>
+                            </div>
+                                                    <div class="form-group row">
+                                    <label for="classId" class="col-md-2 col-sm-2">dtmf send methodh 323</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{dtmfsendmethodh323}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('dtmfsendmethodh323')}" th:errors="*{dtmfsendmethodh323}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="classId" class="col-md-2 col-sm-2">dtmf send method sip</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{dtmfsendmethodsip}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('dtmfsendmethodsip')}" th:errors="*{dtmfsendmethodsip}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                         <label for="classId" class="col-md-2 col-sm-2">dtmf receive payload type</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{dtmfreceivepayloadtype}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('dtmfreceivepayloadtype')}" th:errors="*{dtmfreceivepayloadtype}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+       
+                                <label for="classId" class="col-md-2 col-sm-2">dtmf send payload type h323</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{dtmfsendpayloadtypeh323}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('dtmfsendpayloadtypeh323')}" th:errors="*{dtmfsendpayloadtypeh323}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                     
+                                <label for="classId" class="col-md-2 col-sm-2">dtmf send payload type sip</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{dtmfsendpayloadtypesip}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('dtmfsendpayloadtypesip')}" th:errors="*{dtmfsendpayloadtypesip}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                 
+                                <label for="classId" class="col-md-2 col-sm-2">q931 number in gplan</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{q931numberingplan}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('q931numberingplan')}" th:errors="*{q931numberingplan}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+           
+                                <label for="classId" class="col-md-2 col-sm-2">q931 number type</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{q931numbertype}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('q931numbertype')}" th:errors="*{q931numbertype}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+          
+                                <label for="classId" class="col-md-2 col-sm-2">sip response address method</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{sipresponseaddressmethod}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('sipresponseaddressmethod')}" th:errors="*{sipresponseaddressmethod}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                      <label for="classId" class="col-md-2 col-sm-2">sip request address method</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{siprequestaddressmethod}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('siprequestaddressmethod')}" th:errors="*{siprequestaddressmethod}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+
+                                <label for="classId" class="col-md-2 col-sm-2">stop switch after rtp start</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{stopswitchafterrtpstart}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('stopswitchafterrtpstart')}" th:errors="*{stopswitchafterrtpstart}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="classId" class="col-md-2 col-sm-2">stop switch after user busy</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{stopswitchafteruserbusy}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('stopswitchafteruserbusy')}" th:errors="*{stopswitchafteruserbusy}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                       <label for="classId" class="col-md-2 col-sm-2">bits of h323 config</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{bitsofh323config}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('bitsofh323config')}" th:errors="*{bitsofh323config}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                 <label for="classId" class="col-md-2 col-sm-2">bits of sip config</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{bitsofsipconfig}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('bitsofsipconfig')}" th:errors="*{bitsofsipconfig}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="classId" class="col-md-2 col-sm-2">bits of config</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{bitsofconfig}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('bitsofconfig')}" th:errors="*{bitsofconfig}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="classId" class="col-md-2 col-sm-2">caller allow length</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{callerallowlength}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('callerallowlength')}" th:errors="*{callerallowlength}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="classId" class="col-md-2 col-sm-2">callee allow length</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{calleeallowlength}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('calleeallowlength')}" th:errors="*{calleeallowlength}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+
+                                <label for="classId" class="col-md-2 col-sm-2">caller limit e164 groups</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{callerlimite164groups}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('callerlimite164groups')}" th:errors="*{callerlimite164groups}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+   
+                                <label for="classId" class="col-md-2 col-sm-2">call ee limit e164 groups</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{calleelimite164groups}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('calleelimite164groups')}" th:errors="*{calleelimite164groups}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+
+                                <label for="classId" class="col-md-2 col-sm-2">local ip</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{localip}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('localip')}" th:errors="*{localip}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+    
+                                <label for="classId" class="col-md-2 col-sm-2">h323 codecs</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{h323codecs}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('h323codecs')}" th:errors="*{h323codecs}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+          
+                                <label for="classId" class="col-md-2 col-sm-2">sip codecs</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{sipcodecs}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('sipcodecs')}" th:errors="*{sipcodecs}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+           
+                                <label for="classId" class="col-md-2 col-sm-2">calculate asr</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{calculateasr}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('calculateasr')}" th:errors="*{calculateasr}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+
+                                <label for="classId" class="col-md-2 col-sm-2">calculate acd</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{calculateacd}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('calculateacd')}" th:errors="*{calculateacd}"> </span>
+                                </div>
+                            </div>
+                   
+                            <div class="form-group row">
+
+                                <label for="classId" class="col-md-2 col-sm-2">min profit percent</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{minprofitpercent}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('minprofitpercent')}" th:errors="*{minprofitpercent}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+
+                                <label for="classId" class="col-md-2 col-sm-2">max second rates</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{maxsecondrates}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('maxsecondrates')}" th:errors="*{maxsecondrates}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+          
+
+                                <label for="classId" class="col-md-2 col-sm-2">fee rate restrict</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{feeraterestrict}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('feeraterestrict')}" th:errors="*{feeraterestrict}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+         
+
+                                <label for="classId" class="col-md-2 col-sm-2">least cost routing</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{leastcostrouting}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('leastcostrouting')}" th:errors="*{leastcostrouting}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                    
+
+                                <label for="classId" class="col-md-2 col-sm-2">h323 g729 send mode</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{h323g729sendmode}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('h323g729sendmode')}" th:errors="*{h323g729sendmode}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+              
+
+                                <label for="classId" class="col-md-2 col-sm-2">sip g729 send mode</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{sipg729sendmode}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('sipg729sendmode')}" th:errors="*{sipg729sendmode}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+         
+
+                                <label for="classId" class="col-md-2 col-sm-2">sip g729 annexb</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{sipg729annexb}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('sipg729annexb')}" th:errors="*{sipg729annexb}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                           
+
+                                <label for="classId" class="col-md-2 col-sm-2">sip g723 annexa</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{sipg723annexa}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('sipg723annexa')}" th:errors="*{sipg723annexa}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                       
+
+                                <label for="classId" class="col-md-2 col-sm-2">media check direction</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{mediacheckdirection}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('mediacheckdirection')}" th:errors="*{mediacheckdirection}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+               
+
+                                <label for="classId" class="col-md-2 col-sm-2">enable call transfer</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{enablecalltransfer}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('enablecalltransfer')}" th:errors="*{enablecalltransfer}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+    
+                                <label for="classId" class="col-md-2 col-sm-2">max call duration lower</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{maxcalldurationlower}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('maxcalldurationlower')}" th:errors="*{maxcalldurationlower}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+   
+                                <label for="classId" class="col-md-2 col-sm-2">max  call duration upper</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{maxcalldurationupper}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('maxcalldurationupper')}" th:errors="*{maxcalldurationupper}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+  
+                                <label for="classId" class="col-md-2 col-sm-2">call eee164 restrict</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{calleee164restrict}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('calleee164restrict')}" th:errors="*{calleee164restrict}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+              
+                                <label for="classId" class="col-md-2 col-sm-2">enable phone display</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{enablephonedisplay}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('enablephonedisplay')}" th:errors="*{enablephonedisplay}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                               <label for="classId" class="col-md-2 col-sm-2">switch until connect</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{switchuntilconnect}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('switchuntilconnect')}" th:errors="*{switchuntilconnect}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                             <label for="classId" class="col-md-2 col-sm-2">max call rate</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{maxcallrate}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('maxcallrate')}" th:errors="*{maxcallrate}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                                <label for="classId" class="col-md-2 col-sm-2">max call rate unit</label>
+                                <div class="col-md-3 col-sm-3">
+                                       <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{maxcallrateunit}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('maxcallrateunit')}" th:errors="*{maxcallrateunit}"> </span>
+                                </div>
+                                    
+                                </div>
+                            </div>
+                        
+                            <div class="form-group row">
+                                <label for="classId" class="col-md-2 col-sm-2">sip remote party id screen</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{sipremotepartyidscreen}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('sipremotepartyidscreen')}" th:errors="*{sipremotepartyidscreen}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                     <label for="classId" class="col-md-2 col-sm-2">sip e164 display type</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{sipe164displaytype}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('sipe164displaytype')}" th:errors="*{sipe164displaytype}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                                 <label for="classId" class="col-md-2 col-sm-2">sip privacy type</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{sipprivacytype}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('sipprivacytype')}" th:errors="*{sipprivacytype}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+         
+                                <label for="classId" class="col-md-2 col-sm-2">sip pp referred identity type</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{sipppreferredidentitytype}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('sipppreferredidentitytype')}" th:errors="*{sipppreferredidentitytype}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="classId" class="col-md-2 col-sm-2">sip passerted identity type</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{sippassertedidentitytype}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('sippassertedidentitytype')}" th:errors="*{sippassertedidentitytype}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                                  <label for="classId" class="col-md-2 col-sm-2">sip invite code</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{sipinvitecode}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('sipinvitecode')}" th:errors="*{sipinvitecode}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                                    <label for="classId" class="col-md-2 col-sm-2">sip authentication user</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{sipauthenticationuser}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('sipauthenticationuser')}" th:errors="*{sipauthenticationuser}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                       <label for="classId" class="col-md-2 col-sm-2">forward signal rewrite e164 group</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{forwardsignalrewritee164group}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('forwardsignalrewritee164group')}" th:errors="*{forwardsignalrewritee164group}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                                  <label for="classId" class="col-md-2 col-sm-2">callin mapping gateways</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{callinmappinggateways}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('callinmappinggateways')}" th:errors="*{callinmappinggateways}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                                       <label for="classId" class="col-md-2 col-sm-2">trace end time</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{traceendtime}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('traceendtime')}" th:errors="*{traceendtime}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                               <label for="classId" class="col-md-2 col-sm-2">aas sampling</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{aassampling}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('aassampling')}" th:errors="*{aassampling}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="classId" class="col-md-2 col-sm-2">aa sword category</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{aaswordcategory}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('aaswordcategory')}" th:errors="*{aaswordcategory}"> </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="classId" class="col-md-2 col-sm-2">stop switch sip codes</label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input  th:required="required" class="form-control" th:field="*{stopswitchsipcodes}" placeholder="" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('stopswitchsipcodes')}" th:errors="*{stopswitchsipcodes}"> </span>
+                                </div>
+                            </div>
+       
+                            <div class="box-footer">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </form>  
+
+                    </div>
+                </div>
+
+            </section>
+            <!-- /.content -->
+
+
+        </div>
+        <!-- /.content-wrapper -->
+    </div>
+</div>

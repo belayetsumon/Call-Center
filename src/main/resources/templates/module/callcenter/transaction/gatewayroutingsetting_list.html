@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<div xmlns:th="http://www.thymeleaf.org" layout:decorator="theme/admin-layout">
+
+
+    <div layout:fragment = "main_content">
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <h1>
+                    Call Center VOS 3000
+                    <small></small>
+                </h1>
+
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title"> Gateway Routing Setting List</h3>
+                        <div class="box-tools pull-right">
+                            <div class="btn-group">
+<!--                                <a type="button"  th:href="@{/gatewayroutingsetting/index}" class="btn  btn-primary btn-xs"> <i class="fa fa-window-close"></i>Add New</a>-->
+                                <a type="button"  th:href="@{/callcenter/index}" class="btn  btn-danger btn-xs"> <i class="fa fa-window-close"></i> Close</a>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-body">
+
+
+                        <div class="table-responsive">
+                            <table class="table table-condensed table-bordered">
+                                <thead>
+                                    <th>gateway routing Id</th>   
+                                    
+                                <th>caller city e164 check</th>  
+                                <th>call ee city e164 check</th>  
+                                <th>deny calle rcallee</th>  
+                                <th>deny same city codes</th>  
+                                <th>check mobile area</th>  
+                                <th>callin caller prefixes</th>  
+                                <th>callin calle eprefixes</th>  
+                                <th>callin forward prefixes</th>  
+                                <th>rewrite rules in callee</th>  
+                                <th>rewrite rules in mobile area</th>       
+                                <th>rewrite rules in caller</th>  
+                                <th>rewrite rules in caller use e164 group</th>  
+                                <th>rewrite rule spi dentity</th>  
+                                <th>scheduled call in prefixes</th>  
+                                <th>scheduled rewrite rules in</th>  
+                                <th>scheduled capacity</th>  
+                                <th>scheduled priority</th>  
+                                <th>timeout setup</th>  
+                                <th>timeout call proceeding</th>  
+                                <th>timeout call proceeding olc</th>  
+                                <th>timeout alerting</th>  
+                                <th>timeout invite</th>  
+                                <th>timeout trying</th>  
+                                <th>timeout session progress sdp</th>        
+                                <th>timeout session progress</th>  
+                                <th>time out ringing</th>  
+                                <th>stop switch after olc</th>  
+                                <th>stop switch after sdp</th>  
+                                <th>clearing account use call out e164</th>  
+                                <th>q931 present ati on indicator</th>  
+                                <th>q931 screening indicator</th>  
+                                <th>dtmf receive method</th>  
+                                <th>dtmf send methodh 323</th>  
+                                <th>dtmf send method sip</th>  
+                                <th>dtmf receive payload type</th>  
+                                <th>dtmf send payload type h323</th>  
+                                <th>dtmf send payload type sip</th>        
+                                <th>q931 number in gplan</th>  
+                                <th>q931 number type</th>        
+                                <th>sip response address method</th>  
+                                <th>sip request address method</th>  
+                                <th>stop switch after rtp start</th>  
+                                <th>stop switch after user busy</th>  
+                                <th>bits of h323 config</th>  
+                                <th>bits of sip config</th>  
+                                <th>bits of config</th>  
+                                <th>caller allow length</th>  
+                                <th>callee allow length</th>  
+                                <th>caller limit e164 groups</th>  
+                                <th>call ee limit e164 groups</th>  
+                                <th>local ip</th>  
+                                <th>h323 codecs</th>  
+                                <th>sip codecs</th>  
+                                <th>calculate asr</th>  
+                                <th>calculate acd</th>  
+                                <th>min profit percent</th>  
+                                <th>max second rates</th>  
+                                <th>fee rate restrict</th>  
+                                <th>least cost routing</th>  
+                                <th>h323 g729 send mode</th>  
+                                <th>sip g729 send mode</th>  
+                                <th>sip g729 annexb</th>  
+                                <th>sip g723 annexa</th>  
+                                <th>media check direction</th>  
+                                <th>enable call transfer</th>  
+                                <th>max call duration lower</th>  
+                                <th>max  call duration upper</th>  
+                                <th>call eee164 restrict</th>  
+                                <th>enable phone display</th>  
+                                <th>switch until connect</th>  
+                                <th>max call rate</th>  
+                                <th>max call rate unit</th>  
+                                <th>sip remote partyi dscreen</th>  
+                                <th>sip e164 display type</th>  
+                                <th>sip privacy type</th>  
+                                <th>sip pp referred identity type</th>  
+                                <th>sip passerted identity type</th>  
+                                <th>sip invite code</th>  
+                                <th>sip authentication user</th>  
+                                <th>forward signal rewrite e164 group</th>  
+                                <th>callin mapping gateways</th>  
+                                <th>trace end time</th>  
+                                <th>aas sampling</th>  
+                                <th>aa sword category</th>  
+                                <th>stop switch sip codes</th>  
+<!--                                <th>Edit</th>
+                                <th>Delete</th>-->
+                                </thead>
+                                <tbody>
+                                    <tr th:each="lists,status:${list}">
+                                        <td th:text="${lists.gatewayroutingId}"> </td>
+                                        <td th:text="${lists.callercitye164check}"> </td>
+                                        <td th:text="${lists.calleecitye164check}"> </td>
+                                        <td th:text="${lists.denycallercallee}"> </td>
+                                        <td th:text="${lists.denysamecitycodes}"> </td>
+                                        <td th:text="${lists.checkmobilearea}"> </td>
+                                        <td th:text="${lists.callincallerprefixes}"> </td>
+                                        <td th:text="${lists.callincalleeprefixes}"> </td>
+                                        <td th:text="${lists.callinforwardprefixes}"> </td>
+                                        <td th:text="${lists.rewriterulesincallee}"> </td>
+                                        <td th:text="${lists.rewriterulesinmobilearea}"> </td>
+                                        <td th:text="${lists.rewriterulesincaller}"> </td>
+                                        <td th:text="${lists.rewriterulesincallerusee164group}"> </td>
+                                        <td th:text="${lists.rewriterulespidentity}"> </td>
+                                        <td th:text="${lists.scheduledcallinprefixes}"> </td>
+                                        <td th:text="${lists.scheduledrewriterulesin}"> </td>
+                                        <td th:text="${lists.scheduledcapacity}"> </td>
+                                        <td th:text="${lists.scheduledpriority}"> </td>
+                                        <td th:text="${lists.timeoutsetup}"> </td>
+                                        <td th:text="${lists.timeoutcallproceeding}"> </td>
+                                        <td th:text="${lists.timeoutcallproceedingolc}"> </td>
+                                        <td th:text="${lists.timeoutalerting}"> </td>
+                                        <td th:text="${lists.timeoutinvite}"> </td>
+                                        <td th:text="${lists.timeouttrying}"> </td>
+                                        <td th:text="${lists.timeoutsessionprogresssdp}"> </td>
+                                        <td th:text="${lists.timeoutsessionprogress}"> </td>
+                                        <td th:text="${lists.timeoutringing}"> </td>
+                                        <td th:text="${lists.stopswitchafterolc}"> </td>
+                                        <td th:text="${lists.stopswitchaftersdp}"> </td>
+                                        <td th:text="${lists.clearingaccountusecalloute164}"> </td>
+                                        <td th:text="${lists.q931presentationindicator}"> </td>
+                                        <td th:text="${lists.q931screeningindicator}"> </td>
+                                        <td th:text="${lists.dtmfreceivemethod}"> </td>
+                                        <td th:text="${lists.dtmfsendmethodh323}"> </td>
+                                        <td th:text="${lists.dtmfsendmethodsip}"> </td>
+                                        <td th:text="${lists.dtmfreceivepayloadtype}"> </td>
+                                        <td th:text="${lists.dtmfsendpayloadtypeh323}"> </td>
+                                        <td th:text="${lists.dtmfsendpayloadtypesip}"> </td>
+                                        <td th:text="${lists.q931numberingplan}"> </td>
+                                        <td th:text="${lists.q931numbertype}"> </td>
+                                        <td th:text="${lists.sipresponseaddressmethod}"> </td>
+                                        <td th:text="${lists.siprequestaddressmethod}"> </td>
+                                        <td th:text="${lists.stopswitchafterrtpstart}"> </td>
+                                        <td th:text="${lists.stopswitchafteruserbusy}"> </td>
+                                        <td th:text="${lists.bitsofh323config}"> </td>
+                                        <td th:text="${lists.bitsofsipconfig}"> </td>
+                                        <td th:text="${lists.bitsofconfig}"> </td>
+                                        <td th:text="${lists.callerallowlength}"> </td>
+                                        <td th:text="${lists.calleeallowlength}"> </td>
+                                        <td th:text="${lists.callerlimite164groups}"> </td>
+                                        <td th:text="${lists.calleelimite164groups}"> </td>
+                                        <td th:text="${lists.localip}"> </td>
+                                        <td th:text="${lists.h323codecs}"> </td>
+                                        <td th:text="${lists.sipcodecs}"> </td>
+                                        <td th:text="${lists.calculateasr}"> </td>
+                                        <td th:text="${lists.calculateacd}"> </td>
+                                        <td th:text="${lists.minprofitpercent}"> </td>
+                                        <td th:text="${lists.maxsecondrates}"> </td>
+                                        <td th:text="${lists.feeraterestrict}"> </td>
+                                        <td th:text="${lists.leastcostrouting}"> </td>
+                                        <td th:text="${lists.h323g729sendmode}"> </td>
+                                        <td th:text="${lists.sipg729sendmode}"> </td>
+                                        <td th:text="${lists.sipg729annexb}"> </td>
+                                        <td th:text="${lists.sipg723annexa}"> </td>
+                                        <td th:text="${lists.mediacheckdirection}"> </td>
+                                        <td th:text="${lists.enablecalltransfer}"> </td>
+                                        <td th:text="${lists.maxcalldurationlower}"> </td>
+                                        <td th:text="${lists.maxcalldurationupper}"> </td>
+                                        <td th:text="${lists.calleee164restrict}"> </td>
+                                        <td th:text="${lists.enablephonedisplay}"> </td>
+                                        <td th:text="${lists.switchuntilconnect}"> </td>
+                                        <td th:text="${lists.maxcallrate}"> </td>
+                                        <td th:text="${lists.maxcallrateunit}"> </td>
+                                        <td th:text="${lists.sipremotepartyidscreen}"> </td>
+                                        <td th:text="${lists.sipe164displaytype}"> </td>
+                                        <td th:text="${lists.sipprivacytype}"> </td>
+                                        <td th:text="${lists.sipppreferredidentitytype}"> </td>
+                                        <td th:text="${lists.sippassertedidentitytype}"> </td>
+                                        <td th:text="${lists.sipinvitecode}"> </td>
+                                        <td th:text="${lists.sipauthenticationuser}"> </td>
+                                        <td th:text="${lists.forwardsignalrewritee164group}"> </td>
+                                        <td th:text="${lists.callinmappinggateways}"> </td>
+                                        <td th:text="${lists.traceendtime}"> </td>
+                                        <td th:text="${lists.aassampling}"> </td>
+                                        <td th:text="${lists.aaswordcategory}"> </td>
+                                         <td th:text="${lists.stopswitchsipcodes}"> </td>
+                                                                            
+<!--                                                                        <td> <a th:href="@{/gatewayroutingsetting/edit/{id} (id=${lists.gatewayroutingId})}" href="#" class="label  bg-green"><i class="fa fa-fw fa-edit"></i></a></td>   
+                                                                                <td> <a th:href="@{/gatewayroutingsetting/delete/{id} (id=${lists.gatewayroutingId})}" href="#" class="label bg-red" onclick="return confirm('Are you sure you want to delete this item?');"><i class="fa fa-fw fa-trash-o"></i></a></td>-->
+
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>     
+
+
+
+                    </div>
+                </div>
+
+            </section>
+            <!-- /.content -->
+
+
+        </div>
+        <!-- /.content-wrapper -->
+    </div>
+</div>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<div xmlns:th="http://www.thymeleaf.org" layout:decorator="theme/admin-layout">
+
+
+    <div layout:fragment = "main_content">
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <h1>
+                    Call Center VOS 3000
+                    <small></small>
+                </h1>
+
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title"> Gateway Mapping</h3>
+                        <div class="box-tools pull-right">
+                            <div class="btn-group">
+
+                                <a type="button"  th:href="@{/gatewaymapping/list}" class="btn  btn-danger btn-xs"> <i class="fa fa-window-close"></i> Close</a>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-body">
+                        <form th:action="@{/companysetup/save}"
+                              enctype="multipart/form-data" th:object="${gatewaymapping}"
+                              method="post" class="">
+                            <div class="alert alert-danger alert-dismissible" th:if="${#fields.hasErrors('*')}">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <h4><i class="icon fa fa-ban"></i> Error </h4>
+                                <ul th:if="${#fields.hasErrors('*')}">
+                                    <li th:each="err : ${#fields.errors('*')}" th:text="${err}">Input is incorrect</li>
+                                </ul>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6">
+                                    <table class="table  table-bordered">
+                                        <tr>
+                                            <th colspan="2" class="text-center">General settings</th>
+
+                                        </tr>
+                                        <tr>
+                                            <td>Name (to appear on reports)<span class="text-red">
+                                                    * </span>: </td>
+<!--                                            <td> 
+                                                                                                <input type="hidden" class=""
+                                                                                                       th:field="*{id}" required="true" placeholder=""/>
+                                                <input type="text" class=""
+                                                       th:field="*{denycallercallee}" required="true" placeholder=""/> <span
+                                                       class="help-block has-error text-red"
+                                                       th:if="${#fields.hasErrors('denycallercallee')}"
+                                                       th:errors="*{denycallercallee}"> </span>
+                                            </td>-->
+                                        </tr> 
+
+
+
+
+
+
+                                    </table>
+                                </div>
+
+
+                            </div>
+
+                            <div class="box-footer">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </form>  
+
+                    </div>
+                </div>
+
+            </section>
+            <!-- /.content -->
+
+
+        </div>
+        <!-- /.content-wrapper -->
+    </div>
+</div>

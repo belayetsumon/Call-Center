@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<div xmlns:th="http://www.thymeleaf.org" layout:decorator="theme/admin-layout">
+
+
+    <div layout:fragment = "main_content">
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <h1>
+                    Call Center VOS 3000
+                    <small></small>
+                </h1>
+
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title"> Assigned Number List <span th:text="${list.size()}"> </span></h3>
+                        <div class="box-tools pull-right">
+                            <div class="btn-group">
+                                <a type="button"  th:href="@{/callcenter/index}" class="btn  btn-danger btn-xs"> <i class="fa fa-window-close"></i> Close</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-body">
+
+                        <form  class="form-inline" th:action="@{/assignednumber/list}" method="get"> 
+                            <div class="form-group">
+                                <label  class="">  Gateway Routing Name</label>
+                                <select class=""  required="true" name="gatewayroutingId" >
+                                    <option value=" "> Select one</option>
+                                    <option th:each =" nameLists :${nameList}"
+                                            th:value=" ${nameLists.id}" 
+                                            th:text="${nameLists.name}"> Select one</option>
+                                </select> 
+                            </div>
+
+                            <div class="form-group">
+                                <label  class=""> Number</label>
+                                <input type="text" class="form-control-plaintext"  name="incommingNumber" />
+                            </div>                                   
+                            <button type="submit" class="btn btn-primary btn-sm">Submit</button> 
+                        </form>
+                        
+                          <form  class="form-inline" th:action="@{/assignednumber/deleteall}" method="get"> 
+                       <button type="submit">Delete Selected</button>
+                              <div class="table-responsive">
+                            
+                                  <table  id="myTable" class="table table-condensed">
+                                <thead>
+                                <th><input type="checkbox"  id="checkAllid"/></th>
+                                <th>ID</th>   
+                                <th>Gateway Routing  ID</th>
+                                <th>Gateway Routing Name</th>
+                                <th> Gateway Name Prefix</th>
+                                <th> Gateway Routing Prefix </th>
+                                <th>Rewrite Rules</th>
+                                <th> Incoming Number</th>
+                                <th> Priority </th>
+                                <th> Repeats </th>
+                                <th> Created </th>
+                                <th> Updated </th>
+
+                                <!--                                <th> Edit </th>-->
+                                <th> Delete </th>
+
+                                </thead>
+                                <tbody>
+                                    <tr th:each="lists,status:${list}">
+                                        
+                                        <td>
+                                            
+                                        <input type="checkbox"  th:value="${lists.id}" name="id"/>
+                                        
+                                        </td>
+                                        <td th:text="${lists.id}"> </td>
+                                        <td th:text="${lists.gatewayroutingId}"> </td>  
+                                        <td th:text="${lists.gatewayName}"> </td>  
+                                        <td th:text="${lists.gatewayNamePrefix}"> </td>  
+                                        <td th:text="${lists.gatewayRoutingPrefix}"> </td>  
+                                        <td th:text="${lists.gatewayRoutingSettingRewriteRules}"> </td>  
+                                        <td th:text="${lists.incommingNumber}"> </td> 
+                                        <td th:text="${lists.priority}"> </td>                          
+                                        <td th:text="${lists.repeats}"> </td> 
+                                        <td th:text="${lists.created}"> </td> 
+                                        <td th:text="${lists.modified}"> </td> 
+
+                                        <!--                                <td> <a th:href="@{/assignednumber/edit/{id} (id=${lists.id})}" href="#" class="label  bg-green"><i class="fa fa-fw fa-edit"></i></a></td>   -->
+                                        <td> <a th:href="@{/assignednumber/delete/{id} (id=${lists.id})}" href="#" class="label bg-red" onclick="return confirm('Are you sure you want to delete this item?');"><i class="fa fa-fw fa-trash-o"></i></a></td>   
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                              
+                              </form>
+
+                    </div>
+                </div>
+
+            </section>
+            <!-- /.content -->
+
+
+        </div>
+        <!-- /.content-wrapper -->
+    </div>
+</div>

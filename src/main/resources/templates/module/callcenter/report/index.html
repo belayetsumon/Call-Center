@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<div xmlns:th="http://www.thymeleaf.org"  layout:decorator="theme/admin-layout">
+    <div layout:fragment = "main_content">
+        <div class="content-wrapper">
+            <!-- Main content -->
+            <section class="content-header">
+                <h1>
+                    Call Center <small> </small>
+                </h1>
+
+            </section>
+            <section class="content">
+
+                <div class="box ">
+
+                    <div class="box-body">
+
+
+                        <div class="col-sm-6">
+                            <div class="box box-primary box-solid">
+                                <div class="box-header with-border">
+                                    <h4>Transaction</h4>
+                                </div>
+                                <!-- /.box-header -->
+                                <div class="box-body">
+                                    <table class="table table-condensed">
+                                        <tbody>
+                                            <!--                                                <tr sec:authorize="hasAuthority('COMPANY_SETUP')">-->
+                                            <!--                                            <tr>
+                                                                                            <td><span class="badge bg-light-blue"></span></td>
+                                                                                            <td><a th:href="@{/gatewaymappingsetting/list}">Gateway Mapping setting</a></td>               
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td><span class="badge bg-light-blue"></span></td>
+                                                                                            <td><a th:href="@{/gatewaymapping/list}">Gateway Mapping</a></td>               
+                                                                                        </tr>-->
+                                            <tr>
+                                                <td><span class="badge bg-light-blue"></span></td>
+                                                <td><a th:href="@{/gatewayroutingsetting/list}">Gateway routing setting</a></td>               
+                                            </tr>
+                                            <tr>
+                                                <td><span class="badge bg-light-blue"></span></td>
+                                                <td><a th:href="@{/gatewayrouting/list}">Gateway routing </a></td>               
+                                            </tr>
+
+                                            <tr>
+                                                <td><span class="badge bg-light-blue"></span></td>
+                                                <td><a th:href="@{/cdr/list}">CDR</a></td>               
+                                            </tr>
+
+                                            <tr>
+                                                <td><span class="badge bg-light-blue"></span></td>
+                                                <td><a th:href="@{/configuration/list}">Configuration</a></td>               
+                                            </tr>
+
+                                            <tr>
+                                                <td><span class="badge bg-light-blue"></span></td>
+                                                <td><a th:href="@{/prefixtable/list}">Prefix Table</a></td>               
+                                            </tr>
+
+
+                                            <tr>
+                                                <td><span class="badge bg-light-blue"></span></td>
+                                                <td><a th:href="@{/endreason/list}">End Reason </a></td>               
+                                            </tr>
+
+                                            <tr>
+                                                <td><span class="badge bg-light-blue"></span></td>
+                                                <td><a th:href="@{/callcentersettings/list}">Settings </a></td>               
+                                            </tr>
+                                            <tr>
+                                                <td><span class="badge bg-light-blue"></span></td>
+                                                <td><a th:href="@{/callerrtpip/list}"> Caller Rtp Ip </a></td>               
+                                            </tr>
+
+                                            <tr>
+                                                <td><span class="badge bg-light-blue"></span></td>
+                                                <td><a th:href="@{/cdrtemp/list}"> CDR Temp All Data</a></td>               
+                                            </tr>
+
+                                            <tr>
+                                                <td><span class="badge bg-light-blue"></span></td>
+                                                <td><a th:href="@{/cdrtemp/last30MinutesDatalist}"> CDR Temp Last 30 Minutes Data </a></td>               
+                                            </tr>
+
+
+
+
+                                            <tr>
+                                                <td><span class="badge bg-light-blue"></span></td>
+                                                <td><a th:href="@{/cdrtemp/listcount}"> CDR temp count </a></td>   
+
+
+
+
+                                            </tr>
+
+                                            <tr>
+                                                <td><span class="badge bg-light-blue"></span></td>
+                                                <td><a th:href="@{/cdrtemp/listcount_last_30_minutes}"> CDR Temp Count Last 30 Minutes Repeats Incoming Number  </a></td>   
+
+
+
+
+                                            </tr>
+
+
+
+
+
+                                            <tr>
+                                                <td><span class="badge bg-light-blue"></span></td>
+                                                <td><a th:href="@{/assignednumber/list}"> Assigned Number </a></td>   
+
+
+
+
+                                            </tr>
+
+                                            <tr>
+                                                <td><span class="badge bg-light-blue"></span></td>
+                                                <td><a th:href="@{/datascantime/index}"> Scan Log </a></td>   
+                                            </tr>
+                                 <tr>
+                                                <td><span class="badge bg-light-blue"></span></td>
+                                                <td><a th:href="@{/assignednumber/deletenonerepeatnumber}"> delete Non repeat </a></td>   
+
+
+
+
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>  
+                            <div class="box box-warning box-solid">
+                                <div class="box-header with-border">
+                                    <h4> Settings</h4>
+                                </div>
+                                <!-- /.box-header -->
+                                <div class="box-body">
+                                    <table class="table table-condensed">
+                                        <tbody>
+
+
+                                        </tbody></table>
+                                </div>
+                            </div> 
+
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="box box-success box-solid">
+                                <div class="box-header with-border">
+                                    <h4>Report</h4>
+                                </div>
+                                <!-- /.box-header -->
+                                <div class="box-body">
+                                    <table class="table table-condensed">
+                                        <tbody>
+
+
+                                        </tbody></table>
+                                </div>
+                            </div>  
+                        </div>
+
+                    </div>
+                </div>
+                <!-- /.box -->
+            </section>
+            <!-- /.content -->
+        </div> 
+    </div>
+</div>

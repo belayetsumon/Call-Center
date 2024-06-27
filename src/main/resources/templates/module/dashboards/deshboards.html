@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<div xmlns:th="http://www.thymeleaf.org" layout:decorator="theme/admin-layout">
+
+
+    <div layout:fragment = "main_content">
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <h1>
+                    Admin Dashboards
+                    <small></small>
+                </h1>
+
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title"> Today's Date:</h3>
+                        <div class="box-tools pull-right">
+                            <div class="btn-group">
+
+                                <a type="button"  th:href="@{/}" class="btn  btn-danger btn-xs"> <i class="fa fa-window-close"></i> Close</a>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-body">
+                      <div class="col-sm-6">
+                     
+                            <div class="box box-solid">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Today Summary</h3>
+
+
+
+                                    <div class="box-tools pull-right">
+
+                                    </div>
+                                </div>
+                                <div class="box-body">
+<!--                                    <table class="table table-bordered">
+                                        <tr>
+                                            <th>
+                                                Transactions
+                                            </th>
+                                            <td>
+                                                :
+                                            </td>
+                                            <th>
+                                                Amount(Taka)
+                                            </th>
+
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                Sales
+                                            </td>
+                                            <td>
+                                                :
+                                            </td>
+                                            <td>
+                                                <span th:text="${todayStatistics.sales}"></span>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                Customer Payment
+                                            </td>
+                                            <td>
+                                                :
+                                            </td>
+                                            <td>
+                                                <span th:text="${todayStatistics.CoustomerPayment}"></span>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Purchase
+                                            </td>
+                                            <td>
+                                                :
+                                            </td>
+                                            <td>
+                                                <span th:text="${todayStatistics.purchase}"></span>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                Payment to supplier
+                                            </td>
+                                            <td>
+                                                :
+                                            </td>
+                                            <td>
+                                                <span th:text="${todayStatistics.SupplierPayment}"></span>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                Deposit
+                                            </td>
+                                            <td>
+                                                :
+                                            </td>
+                                            <td>
+                                                <span th:text="${todayStatistics.deposit}"></span>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                Payment/Expense
+                                            </td>
+                                            <td>
+                                                :
+                                            </td>
+                                            <td>
+                                                <span th:text="${todayStatistics.payment}"></span>
+                                            </td>
+                                        </tr>
+
+                                    </table>-->
+
+                                </div>
+                         
+                                <div class="box-footer">
+                                    <div class="box-tools pull-right">
+
+                                    </div>
+                                </div>
+                            
+                            </div>
+
+
+                            <div class="box box-primary">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Current Month Summary</h3>
+
+                                    <div class="box-tools pull-right">
+
+                                    </div>
+                                </div>
+                                <div class="box-body">
+
+                                    <table class="table table-bordered">
+                                        <tr>
+                                            <th>
+                                                Transactions
+                                            </th>
+                                            <td>
+                                                :
+                                            </td>
+                                            <th>
+                                                Amount(Taka)
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Sales
+                                            </td>
+                                            <td>
+                                                :
+                                            </td>
+                                            <td>
+
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                Customer Payment
+                                            </td>
+                                            <td>
+                                                :
+                                            </td>
+                                            <td>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Purchase
+                                            </td>
+                                            <td>
+                                                :
+                                            </td>
+                                            <td>
+
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                Payment to supplier
+                                            </td>
+                                            <td>
+                                                :
+                                            </td>
+                                            <td>
+
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                Deposit
+                                            </td>
+                                            <td>
+                                                :
+                                            </td>
+                                            <td>
+
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                Payment/Expense
+                                            </td>
+                                            <td>
+                                                :
+                                            </td>
+                                            <td>
+
+                                            </td>
+                                        </tr>
+
+                                    </table>
+
+                                </div>
+
+                                <div class="box-footer">
+                                    <div class="box-tools pull-right">
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="box box-primary">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Current Year Summary</h3>
+
+                                    <div class="box-tools pull-right">
+
+                                    </div>
+                                </div>
+                                <div class="box-body">
+                                    <table class="table table-bordered">
+                                        <tr>
+                                            <th>
+                                                Transactions
+                                            </th>
+                                            <td>
+                                                :
+                                            </td>
+                                            <th>
+                                                Amount(Taka)
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Sales
+                                            </td>
+                                            <td>
+                                                :
+                                            </td>
+                                            <td>
+
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Customer Payment</td>
+                                            <td>:</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Purchase
+                                            </td>
+                                            <td>
+                                                :
+                                            </td>
+                                            <td>
+
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                Payment to supplier
+                                            </td>
+                                            <td>
+                                                :
+                                            </td>
+                                            <td>
+
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                Deposit
+                                            </td>
+                                            <td>
+                                                :
+                                            </td>
+                                            <td>
+
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                Payment/Expense
+                                            </td>
+                                            <td>
+                                                :
+                                            </td>
+                                            <td>
+
+                                            </td>
+                                        </tr>
+
+                                    </table>
+                                </div>
+
+                                <div class="box-footer">
+                                    <div class="box-tools pull-right">
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                       <div class="col-sm-6">
+                             Default box 
+                            <div class="box box-primary">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">  Current  Inventory Status</h3>
+
+                                    <div class="box-tools pull-right">
+
+                                    </div>
+                                </div>
+                                <div class="box-body">
+
+<!--                                    <table class="table table-bordered">
+                                        <tr>
+                                            <th>
+                                                Total  Item/Product Quantity
+                                            </th>
+
+                                            <th>
+                                                Total Retail Price(Taka)
+                                            </th>
+
+                                            <th>
+                                                Total Standard Cost(Taka)
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div th:with="result=${#aggregates.sum(itemStatus.![quantity])}">
+                                                    <span th:text="${#numbers.formatDecimal(result, 0, 'COMMA', 2, 'POINT')}"></span>
+                                                </div>
+                                            </td>
+
+                                            <td>
+                                                <div th:with="result=${#aggregates.sum(itemStatus.![retailPriceTotal])}">
+                                                    <span th:text="${#numbers.formatDecimal(result, 0, 'COMMA', 2, 'POINT')}"></span>
+                                                </div>
+                                            </td>
+
+                                            <td>
+                                                <div th:with="result=${#aggregates.sum(itemStatus.![standardCostTotal])}">
+                                                    <span th:text="${#numbers.formatDecimal(result, 0, 'COMMA', 2, 'POINT')}"></span>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                    </table>-->
+
+
+                                </div>
+                                
+                                <div class="box-footer">
+                                    <div class="box-tools pull-right">
+
+                                    </div>
+                                </div>
+                               
+                            </div>
+                            <div class="box box-primary">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Bank Account Status</h3>
+
+                                    <div class="box-tools pull-right">
+
+                                    </div>
+                                </div>
+                                <div class="box-body">
+                                    <table class="table table-bordered">
+                                        <tr>
+                                            <th>
+                                                #
+                                            </th>
+                                            <th>
+                                                Bank Account Name
+                                            </th>
+                                            <th>
+                                                Total  Amount(Taka)
+                                            </th>
+                                        </tr>
+<!--                                       <tr th:if="${not #lists.isEmpty(list)}" th:each="lists,status:${list}">
+                                            <td th:text="${status.count}"></td>
+                                            <td>  <span th:if="${not #strings.isEmpty(lists.bankAct)}" th:text="${lists.bankAct.bankAccountName}"> </span> </td>
+                                            <td th:text="${lists.amount}"> </td>
+                                        </tr>-->
+                                        <tr>
+                                            <td></td>
+                                            <th>Total</th>
+                                            <th> 
+<!--                                                <span th:text="${#aggregates.sum(list.![amount])}"> </span>-->
+                                            
+                                            </th>
+                                        </tr>
+                                    </table>
+
+                                </div>
+                                 
+                                <div class="box-footer">
+                                    <div class="box-tools pull-right">
+
+                                    </div>
+                                </div>
+                                 
+                            </div>
+                            
+
+                            <div class="box box-primary">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Due Status</h3>
+
+                                    <div class="box-tools pull-right">
+
+                                    </div>
+                                </div>
+                                <div class="box-body">
+<!--                                    <table class="table table-bordered">
+                                        <tr>
+                                            <th>
+                                                Customer Due(Taka)
+                                            </th>
+
+                                            <th>
+                                                Supplier Due(Taka)
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <span th:text="${#aggregates.sum(totalCoustomerDue.![amount])}"> </span> 
+                                                                                                <span th:text=${#aggregates.sum(totalCoustomerDue.![amount])}"> </span>
+                                            </td>
+
+                                            <td>
+                                                <span th:text="${#aggregates.sum(totalSupplierDue.![amount])}"> </span> 
+
+                                            </td>
+                                        </tr>
+                                    </table>-->
+
+                                </div>
+                                
+                                <div class="box-footer">
+                                    <div class="box-tools pull-right">
+
+                                    </div>
+                                </div>
+                                
+                            </div>
+                             
+                        </div>
+
+                    </div>
+                </div>
+
+            </section>
+            <!-- /.content -->
+
+
+        </div>
+        <!-- /.content-wrapper -->
+    </div>
+</div>

@@ -1,0 +1,98 @@
+<div  th:fragment="nav-left">
+    <aside class="main-sidebar" >
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+            <!-- Sidebar user panel -->
+            <div class="user-panel">
+                <div class="pull-left image">
+                    <img th:src="@{/images/user_blank.jpg}" class="img-circle" alt="User Image"/>
+                </div>
+                <div class="pull-left info">
+                    <p></p>       
+                </div>
+            </div>
+            <!-- search form -->
+            <!--            <form action="#" method="get" class="sidebar-form">
+                            <div class="input-group">
+                                <input type="text" name="q" class="form-control" placeholder="Search By  Id"/>
+                                <span class="input-group-btn">
+                                    <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </form>-->
+            <!-- /.search form -->
+            <!-- sidebar menu: : style can be found in sidebar.less -->
+            <ul class="sidebar-menu">
+                <li class="header">MAIN NAVIGATION</li>
+                <li> <a href="#" th:href="@{/}">
+                        <i class="fa fa-home"></i> <span>Home</span>
+                    </a>
+                </li>
+                <li sec:authorize="hasAuthority('ADMIN_DASSHBOARD')">
+
+                    <a href="#" th:href="@{/dashboards/index}">
+                        <i class="fa fa-dashboard"></i> <span> Admin Dashboard</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                </li>
+        <li>
+
+                    <a href="#" th:href="@{/callcenter/index}">
+                        <i class="fa fa-dashboard"></i> <span> Call Center</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                </li>
+
+                <li sec:authorize="hasAuthority('BANKING_GENERAL_LEDGER')">
+                    <a th:href="@{/finanebanking/index}">
+                        <i class="fa fa-book"></i>
+                        <span>Banking and General Ledger</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                </li>
+
+  
+                <li sec:authorize="hasAuthority('SETTINGS')">
+                    <a th:href="@{/settings/index}">
+                        <i class="fa  fa-user"></i>
+                        <span>Settings</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                </li>
+
+                <li sec:authorize="hasAuthority('USERS')">
+                    <a th:href="@{/users/menu}">
+                        <i class="fa  fa-user"></i>
+                        <span>Users</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                </li>
+
+
+
+                <li class="treeview">
+                    <a th:href="@{/users/logout}">
+                        <i class="fa fa-user-times"></i>
+                        <span>Logout</span>
+
+                    </a>
+                </li>
+  
+
+            </ul>
+        </section>
+        <!-- /.sidebar -->
+        <!-- =============================================== -->
+    </aside>
+</div>

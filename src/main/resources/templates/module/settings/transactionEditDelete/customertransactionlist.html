@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<div xmlns:th="http://www.thymeleaf.org" layout:decorator="theme/admin-layout">
+
+    <div layout:fragment = "main_content">
+
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <h1>
+               Settings 
+                    <small>Inquiries and Reports</small>
+                </h1>
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+
+                <!-- Default box -->
+                <div class="box">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Customer Transaction List</h3>
+
+                        <div class="box-tools pull-right">
+                            <div class="btn-group">
+
+                                <a type="button"  th:href="@{/settings/index}" class="btn  btn-danger btn-xs">Close</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="box-body">
+                        <form  class="form-inline" th:action="@{/customertransactioninquiry/index}" method="get"> 
+
+                            <div class="form-group">
+                                <label  class="">Ref</label>
+                                <input type="text"   class="form-control-plaintext" name="reference">
+                            </div>
+
+                            <div class="form-group">
+                                <label  class="">Customer</label>
+                                <select class="form-control " name="customers">
+                                    <option value="">Select Customers</option>
+                                    <option th:each=" customerlists :${customerlist}"
+                                            th:value=" ${customerlists.id}"
+                                            th:text="${customerlists.customerName +' ('+ customerlists.contactPersonsName+')'}">
+                                        Select one</option>
+                                </select> 
+                            </div>
+
+                            <div class="form-group">
+                                <label  class="">Location</label>
+                                <select class="form-control " name="location">
+                                    <option value="">Select Location</option>
+                                    <option th:each=" locationsLists :${locationsList}"
+                                            th:value=" ${locationsLists.id}"
+                                            th:text="${locationsLists.locationName}">
+                                        Select one</option>
+                                </select> 
+
+                            </div>
+
+                            <div class="form-group">
+                                <label  class="">Transaction Type</label>
+                                <select class="form-control " name="transType">
+                                    <option value="">Select Transaction</option>
+                                    <option th:each=" transactionsLists :${transactionsList}"
+                                            th:value=" ${transactionsLists.id}"
+                                            th:text="${transactionsLists.name}">
+                                        Select one</option>
+                                </select>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label  class="">Start Date</label>
+                                <input type="text" class="form-control-plaintext" id="reportStartDate" name="startDate">
+                            </div>
+
+                            <div class="form-group">
+                                <label  class="">End Date</label>
+                                <input type="text" class="form-control-plaintext" id="reportEndDate" name="endDate">
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-sm">Submit</button> 
+
+                        </form>
+
+
+
+                        <table id="table_search_pagination" class="table  table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Date</th>
+                                    <th>Customer</th>
+                                    <th>Trans Type</th>
+                                    <th>Trans no</th>
+                                    <th>Refe: </th>
+                                    <th>Location</th>
+                                    <th>Debit</th>
+                                    <th>Credit </th>
+                                    <th>Amount</th>
+                                    <th>Memo</th>
+                                    
+                                    <th>Action</th>
+
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                                <tr  th:if="${#lists.isEmpty(list)}"  >
+                                    <td colspan="10"> <h4  class="text-center">Sorry, no data available.</h4></td>
+
+                                </tr>
+
+                                <tr  th:if="${not #lists.isEmpty(list)}" th:each="lists, status:${list}" >
+
+                                    <td th:text="${status.count}"></td>
+
+                                    <td th:text="${#dates.format(lists.tranDate, 'dd-MM-yyyy')}"> </td>
+                                    <td th:text="${lists.customers.customerName}"> </td>
+                                    <td th:text="${lists.transType.name}"></td>
+                                    <td th:text="${lists.transNo}"></td>
+                                    <td th:text="${lists.reference}"></td>
+
+                                    <td th:text="${lists.stkLoc.locationName}"></td>
+
+                                    <td th:text="${lists.debit}"></td>
+
+                                    <td th:text="${lists.credit}"></td>
+
+                                    <td>
+                                        <span th:text="${lists.amount}"></span> 
+
+                                    </td>
+                                    
+                                      <td>
+                                        <span th:text="${lists.memo}"></span> 
+
+                                    </td>
+                                    
+                                <td><a th:href="@{/transactioneditdelete/customertransactiondelete/{id} (id=${lists.id})}"  class="label bg-red" onclick="return confirm('Are you sure you want to delete this item?');"><i class="fa fa-fw fa-trash-o"></i></a></td>   
+                
+                                
+
+                                </tr>
+                            </tbody>
+                            <tr>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th> </th>
+                                <th></th>
+                                <th></th>
+                                <th>  </th>
+                                <th><span th:text="${#aggregates.sum(list.![debit])}"> </span></th>
+                                <th> <span th:text="${#aggregates.sum(list.![credit])}"> </span> </th>
+                                <th>  <span th:text="${#aggregates.sum(list.![amount])}"> </span> </th>
+                                <th>  </th>
+                            </tr>
+                        </table>
+
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <div class="box-tools pull-right">
+                            <div class="btn-group">
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box-footer-->
+                </div>
+                <!-- /.box -->
+
+            </section>
+            <!-- /.content -->
+        </div> 
+    </div>
+</div>

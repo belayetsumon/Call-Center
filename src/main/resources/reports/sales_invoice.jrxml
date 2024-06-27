@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.1.final using JasperReports Library version 6.20.1-7584acb244139816654f64e2fd57a00d3e31921e  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="sales_invoice" pageWidth="595" pageHeight="842" whenNoDataType="NoDataSection" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="10" bottomMargin="10" uuid="0dd7a2cb-e233-4bf1-8275-33422d7200fa">
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value="Ik9SREVSUyIgQVMgLDkzLDQzLGQwYjkyYTQ2LTRiN2ItNDI4NC1hZGI4LTcxYTUxZGY4NWJjMzs="/>
+	<style name="Table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="Dataset1" uuid="f7da955b-47f8-4d04-adb5-5bfb989c2b4d">
+		<queryString>
+			<![CDATA[]]>
+		</queryString>
+		<field name="vat" class="java.lang.String"/>
+		<field name="dis" class="java.lang.String"/>
+		<field name="price" class="java.lang.String"/>
+		<field name="unit" class="java.lang.String"/>
+		<field name="qty" class="java.lang.String"/>
+		<field name="description" class="java.lang.String"/>
+		<field name="Code" class="java.lang.String"/>
+		<field name="id" class="java.lang.Integer"/>
+		<field name="itemTotal" class="java.lang.String"/>
+	</subDataset>
+	<parameter name="Ref" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{Ref}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="invoice_date" class="java.sql.Date">
+		<defaultValueExpression><![CDATA[$P{invoice_date}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="due_date" class="java.sql.Date">
+		<defaultValueExpression><![CDATA[$P{due_date}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="billed_to" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{billed_to}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="shipto" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{shipto}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="company_address" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{company_address}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="mobile" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{mobile}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="email" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{email}]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[""]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer"/>
+	<field name="Code" class="java.lang.String"/>
+	<field name="description" class="java.lang.String"/>
+	<field name="qty" class="java.lang.String"/>
+	<field name="unit" class="java.lang.String"/>
+	<field name="price" class="java.lang.String"/>
+	<field name="dis" class="java.lang.String"/>
+	<field name="vat" class="java.lang.String"/>
+	<field name="itemTotal" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="89" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<staticText>
+				<reportElement x="374" y="2" width="179" height="80" forecolor="#D9D9D9" uuid="89bb2dfb-7f6c-427e-82e8-7d53c4c0a15f">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="41" isBold="true"/>
+				</textElement>
+				<text><![CDATA[INVOICE]]></text>
+			</staticText>
+			<image>
+				<reportElement x="10" y="8" width="80" height="81" uuid="429a26f7-f048-4dc4-85ab-1f9b7a791357"/>
+				<imageExpression><![CDATA[""]]></imageExpression>
+			</image>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="70" splitType="Stretch">
+			<staticText>
+				<reportElement x="380" y="0" width="100" height="15" uuid="f45061c3-099d-4401-b798-04c5d10a8230">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<text><![CDATA[Ref.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="17" width="100" height="15" uuid="f08c8b08-1596-41f5-abad-1fbd4bbcde1c">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<text><![CDATA[Invoice Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="34" width="100" height="15" uuid="72846659-cbef-41dd-a2df-b46aa2a9e18c">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<text><![CDATA[Payment Due By:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="480" y="0" width="73" height="15" uuid="a937701e-b917-4b2f-9d3a-8b2503d7ece1">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$P{Ref}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="470" y="16" width="83" height="15" uuid="e20bdf29-2c47-4bcf-b7f3-cd3bd991e1ec">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$P{invoice_date}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="480" y="34" width="73" height="15" uuid="5ddff317-83fc-4d54-a160-72a8a6f1018b"/>
+				<textFieldExpression><![CDATA[$P{due_date}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="2" width="100" height="30" uuid="6b943790-6ef8-4ea1-bb9a-1a8224c981c9"/>
+				<textFieldExpression><![CDATA[$P{company_address}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="180" y="0" width="100" height="16" uuid="60a169d7-1a99-4767-8922-c292973ea05b"/>
+				<textFieldExpression><![CDATA[$P{mobile}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="182" y="15" width="100" height="15" isPrintInFirstWholeBand="true" uuid="5cc9a502-a2d3-466f-a12a-5bd5bbd81fe6">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$P{email}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="453" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="180" height="27" backcolor="#EDEDED" uuid="663ddcec-0bdd-4e4c-a8dd-19fd468ff49b"/>
+				<box padding="3">
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[BILLED TO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="380" y="0" width="173" height="27" backcolor="#EDEDED" uuid="32ed0a1f-1e5f-4677-bebd-9e939db087b6"/>
+				<box padding="3">
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SHIP TO(if Defferent)]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="27" width="100" height="30" uuid="78578ffc-82f0-4c1e-813c-456da39edf0b"/>
+				<textFieldExpression><![CDATA[$P{billed_to}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="376" y="30" width="100" height="30" uuid="f7791e01-447f-473d-b71c-39d9a06f1ea8"/>
+				<textFieldExpression><![CDATA[$P{shipto}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="145" splitType="Stretch">
+			<textField>
+				<reportElement x="440" y="110" width="100" height="15" uuid="3080c160-5adf-4e42-b0ac-4b5558e45d7e">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="MMM d, yyyy h:mm:ss a z">
+				<reportElement x="52" y="110" width="100" height="15" uuid="0029d219-6424-437e-9fe6-94c005c3683f">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="182" y="110" width="219" height="15" uuid="f9d5eade-d11c-444d-9e34-64ab75509b33">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<text><![CDATA[This invoice has been printed by "Liberty ERP."]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="110" width="52" height="15" uuid="01682062-c18d-41dc-9beb-a553818c4a03">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Print Date:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="406" y="110" width="40" height="15" uuid="92e95b9b-8a2e-457b-bf70-b1bbbe15a238">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Page -]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+</jasperReport>
